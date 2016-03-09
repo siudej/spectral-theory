@@ -1,0 +1,3453 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    118608,       3444]
+NotebookOptionsPosition[    113219,       3282]
+NotebookOutlinePosition[    113729,       3302]
+CellTagsIndexPosition[    113686,       3299]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "TrigInt`"}]}], "Input",
+ CellChangeTimes->{{3.666532918260736*^9, 3.6665329659722023`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Upper bounds", "Section",
+ CellChangeTimes->{{3.5489398197947397`*^9, 3.5489398303764267`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T2", "[", 
+     RowBox[{"a_", ",", "b_"}], "]"}], "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}], "}"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"general", " ", "triangle"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"f", "=", 
+  RowBox[{
+   RowBox[{"Equilateral", "[", 
+    RowBox[{"\"\<Neumann\>\"", ",", "\"\<Symmetric\>\""}], "]"}], "[", 
+   RowBox[{"0", ",", "1"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "=", 
+   RowBox[{"Transplant", "[", 
+    RowBox[{"f", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"Equilateral", "[", "]"}]}], "]"}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "scale", " ", "and", " ", "rotate", " ", "to", " ", "put", " ", "nodal", 
+    " ", "line", " ", "near", " ", "vertex", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "0"}], ")"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{"ef1", ",", "x", ",", "x"}], "]"}], "+", 
+      RowBox[{"D", "[", 
+       RowBox[{"ef1", ",", "y", ",", "y"}], "]"}]}], ")"}]}], "/", "ef1"}], "//",
+   "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{"And", "@@", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"#", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "\[LessEqual]", 
+      RowBox[{"#", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", 
+      RowBox[{"#", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}], "&"}], "/@", 
+    RowBox[{"{", 
+     RowBox[{"Limits", "[", 
+      RowBox[{"T2", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"Sqrt", "[", "3", "]"}]}], "]"}], "]"}], "}"}]}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", ">", "0"}], ",", "%"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"tf", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"Transplant", "[", 
+    RowBox[{"f", ",", 
+     RowBox[{"T2", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"T2", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"Sqrt", "[", "3", "]"}]}], "]"}]}], "]"}], "//", 
+   "FullSimplify"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TrigInt", "[", 
+    RowBox[{"tf", ",", 
+     RowBox[{"Limits", "[", 
+      RowBox[{"T2", "[", 
+       RowBox[{"a", ",", "b"}], "]"}], "]"}]}], "]"}], "//", 
+   RowBox[{
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"b", ">", "0"}]}], "]"}], "&"}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"average", " ", "is", " ", "zero"}], ",", " ", 
+    RowBox[{"good", " ", "test", " ", "function"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"U1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"Rayleigh", "[", 
+     RowBox[{"tf", ",", 
+      RowBox[{"T2", "[", 
+       RowBox[{"a", ",", "b"}], "]"}]}], "]"}], "//", 
+    RowBox[{
+     RowBox[{"FullSimplify", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"b", ">", "0"}]}], "]"}], "&"}]}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "U1", " ", "is", " ", "the", " ", "upper", " ", "bound", " ", "for", " ", 
+    "near", " ", "equilateral"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"U2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"BesselJZero", "[", 
+     RowBox[{"0", ",", "1"}], "]"}], "^", "2"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "U2", " ", "is", " ", "the", " ", "upper", " ", "bound", " ", "for", " ", 
+    "near", " ", "degenerate", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Cheng", "'"}], "s", " ", "bound"}], ")"}], " ", 
+    "\[IndentingNewLine]", "We", " ", "could", " ", "also", " ", "use", " ", 
+    RowBox[{
+     RowBox[{"Rayleigh", "[", 
+      RowBox[{
+       RowBox[{"x", "-", 
+        RowBox[{"a", "/", "3"}]}], ",", 
+       RowBox[{"T2", "[", 
+        RowBox[{"a", ",", "b"}], "]"}]}], "]"}], "."}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lin", "=", "x"}], ";", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"+", "b"}], "/", "2"}], " ", "y"}], ";"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"c", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"TrigInt", "[", 
+      RowBox[{"lin", ",", 
+       RowBox[{"Limits", "[", 
+        RowBox[{"T2", "[", 
+         RowBox[{"a", ",", "b"}], "]"}], "]"}]}], "]"}], "/", "b"}], "//", 
+    RowBox[{
+     RowBox[{"FullSimplify", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"b", ">", "0"}]}], "]"}], "&"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TrigInt", "[", 
+   RowBox[{
+    RowBox[{"lin", "-", "c"}], ",", 
+    RowBox[{"Limits", "[", 
+     RowBox[{"T2", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], "]"}]}], "]"}], "//", 
+  RowBox[{
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"b", ">", "0"}]}], "]"}], "&"}]}], "\[IndentingNewLine]", 
+ RowBox[{"U2", "=", 
+  RowBox[{
+   RowBox[{"Rayleigh", "[", 
+    RowBox[{
+     RowBox[{"lin", "-", "c"}], ",", 
+     RowBox[{"T2", "[", 
+      RowBox[{"a", ",", "b"}], "]"}]}], "]"}], "//", 
+   RowBox[{
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"b", ">", "0"}]}], "]"}], "&"}]}]}]}], "Input",
+ CellChangeTimes->{{3.5488529494438868`*^9, 3.5488530163910723`*^9}, {
+  3.548853046836637*^9, 3.548853067849717*^9}, {3.548853112442045*^9, 
+  3.5488532118864403`*^9}, {3.5488532461959887`*^9, 3.548853610466846*^9}, {
+  3.548853645912217*^9, 3.5488536669477253`*^9}, {3.548853706246931*^9, 
+  3.5488537342744637`*^9}, {3.548853917825729*^9, 3.548854001907466*^9}, {
+  3.5488684132978687`*^9, 3.548868433380343*^9}, {3.548877380788562*^9, 
+  3.548877542469408*^9}, {3.548877683696913*^9, 3.548877686383292*^9}, {
+  3.54887775377627*^9, 3.548877754488809*^9}, {3.548877833734397*^9, 
+  3.548877833902363*^9}, {3.548877920230733*^9, 3.548877923203878*^9}, {
+  3.548939815138596*^9, 3.548939818125814*^9}, {3.66653319196523*^9, 
+  3.666533198408523*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lower bounds", "Section",
+ CellChangeTimes->{{3.5489398396358433`*^9, 3.548939854617219*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"0", ",", 
+      RowBox[{"Sqrt", "[", "3", "]"}]}], ")"}], " ", "as", " ", "reference"}],
+    " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ineq1", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"a", "^", "2"}], "+", "3"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+       RowBox[{"2", "a", " ", "b", " ", "\[Delta]"}], "+", 
+       RowBox[{
+        RowBox[{"b", "^", "2"}], " ", "\[Gamma]"}]}], "<", 
+      RowBox[{"4", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Pi]", "^", "2"}], "/", "3"}], "/", "u"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"0", ",", "1"}], ")"}], " ", "as", " ", "reference"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ineq2", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"a", "^", "2"}], "+", "1"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+       RowBox[{"2", "a", " ", "b", " ", "\[Delta]"}], "+", 
+       RowBox[{
+        RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+      RowBox[{"3", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Pi]", "^", "2"}], "/", "4"}], "/", "u"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"1", "/", "2"}], ",", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}], ")"}], " ", "as", " ", 
+     "reference", " ", 
+     RowBox[{"(", 
+      RowBox[{"half", " ", "of", " ", "equilateral"}], ")"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ineq3", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"a", "-", 
+             RowBox[{"1", "/", "2"}]}], ")"}], "^", "2"}], "+", 
+          RowBox[{"3", "/", "4"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+       RowBox[{"2", 
+        RowBox[{"(", 
+         RowBox[{"a", "-", 
+          RowBox[{"1", "/", "2"}]}], ")"}], "b", " ", "\[Delta]"}], "+", 
+       RowBox[{
+        RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+      RowBox[{"2", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Pi]", "^", "2"}], "/", "3"}], "/", "u"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", ",", 
+       RowBox[{"2", "/", 
+        RowBox[{"Sqrt", "[", "3", "]"}]}]}], ")"}], " ", "as", " ", 
+     "reference", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"half", " ", "of", " ", "equilateral"}], ",", " ", 
+       RowBox[{
+        RowBox[{"longest", " ", "side", " ", "on", " ", "x"}], "-", 
+        "axis"}]}], " ", ")"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ineq4", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"a", "-", "1"}], ")"}], "^", "2"}], "+", 
+          RowBox[{"4", "/", "3"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+       RowBox[{"2", 
+        RowBox[{"(", 
+         RowBox[{"a", "-", "1"}], ")"}], "b", " ", "\[Delta]"}], "+", 
+       RowBox[{
+        RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+      RowBox[{"8", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Pi]", "^", "2"}], "/", "9"}], "/", "u"}]}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Near", " ", "equilateral", " ", "we", " ", "need", " ", "1", " ", "2", 
+     " ", "3.", " ", "Near", " ", "degenerate", " ", "3", " ", "4."}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"neareq", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"ineq1", "||", "ineq2", "||", "ineq3"}], "/.", 
+     RowBox[{"u", "\[Rule]", "U1"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"nearde", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"ineq3", "||", "ineq4"}], "/.", 
+     RowBox[{"u", "\[Rule]", "U2"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"middle", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"ineq3", "||", "ineq4"}], "/.", 
+     RowBox[{"u", "\[Rule]", "U1"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"g1", "[", 
+     RowBox[{
+      RowBox[{"c_", "?", "NumberQ"}], ",", 
+      RowBox[{"d_", "?", "NumberQ"}]}], "]"}], ":=", 
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"neareq", "/.", 
+        RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+       RowBox[{"b", "\[Rule]", "d"}]}], ",", 
+      RowBox[{
+       RowBox[{"0", "\[LessEqual]", "\[Gamma]", "\[LessEqual]", "1"}], "&&", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "/", "2"}], "\[LessEqual]", "\[Delta]", 
+        "\[LessEqual]", 
+        RowBox[{"1", "/", "2"}]}]}]}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"g2", "[", 
+     RowBox[{
+      RowBox[{"c_", "?", "NumberQ"}], ",", 
+      RowBox[{"d_", "?", "NumberQ"}]}], "]"}], ":=", 
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"nearde", "/.", 
+        RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+       RowBox[{"b", "\[Rule]", "d"}]}], ",", 
+      RowBox[{
+       RowBox[{"0", "\[LessEqual]", "\[Gamma]", "\[LessEqual]", "1"}], "&&", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "/", "2"}], "\[LessEqual]", "\[Delta]", 
+        "\[LessEqual]", 
+        RowBox[{"1", "/", "2"}]}]}]}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.5488540065055723`*^9, 3.5488540108378677`*^9}, {
+  3.548854182283924*^9, 3.5488545441306667`*^9}, {3.548859780011166*^9, 
+  3.5488599410516863`*^9}, {3.548860018067149*^9, 3.548860055241433*^9}, {
+  3.548863997183606*^9, 3.548863997949972*^9}, {3.548939835068955*^9, 
+  3.5489398375534077`*^9}, {3.548962803969554*^9, 3.5489628169423103`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tri", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a", "+", "1"}], ")"}], "^", "2"}], "+", 
+      RowBox[{"b", "^", "2"}]}], "\[LessEqual]", "4"}], "&&", 
+    RowBox[{"a", ">", "0"}], "&&", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"2", 
+       RowBox[{"a", "^", "2"}]}], "+", 
+      RowBox[{"2", 
+       RowBox[{"b", "^", "2"}]}]}], ">", "2"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"g1", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"g2", "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", "tri", ",", 
+     RowBox[{"a", ">", 
+      RowBox[{"1", "/", "2"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "10"}], ",", 
+   RowBox[{"MaxRecursion", "\[Rule]", "2"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5488598862674437`*^9, 3.548859896759305*^9}, {
+  3.548859952990623*^9, 3.5488599695441093`*^9}, {3.548860117249819*^9, 
+  3.548860120314094*^9}, {3.548860154408085*^9, 3.548860171831543*^9}, {
+  3.548860310059347*^9, 3.548860312460677*^9}, {3.548869528009*^9, 
+  3.548869529512348*^9}, {3.5488775640496063`*^9, 3.548877566904623*^9}, {
+  3.5489400169284163`*^9, 3.5489400337398977`*^9}}],
+
+Cell["Clearly neareq and nearde cover every acute triangle.", "Text",
+ CellChangeTimes->{{3.549038125058329*^9, 3.54903816040619*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Proof for nearly degenerate triangles (with 1/2 \[LessEqual] a \[LessEqual] 1 \
+and 0 < b \[LessEqual] 1.08).\
+\>", "Section",
+ CellChangeTimes->{{3.548939733630907*^9, 3.54893974541961*^9}, {
+  3.548939778134666*^9, 3.548939801648121*^9}, {3.548939949482655*^9, 
+  3.5489399572089033`*^9}, {3.5489550223774843`*^9, 3.548955043624723*^9}}],
+
+Cell[BoxData[
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"tri", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", "/", "2"}], "\[LessEqual]", "a", "\[LessEqual]", "1"}], "&&", 
+      RowBox[{"0", "<", "b", "\[LessEqual]", "1.08"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.548940850080413*^9, 3.5489408882887163`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"nearde", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"both", " ", "inequalities"}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.548940047668832*^9, 3.54894004839098*^9}, {
+  3.548940417436*^9, 3.548940425553473*^9}}],
+
+Cell["\<\
+At least one inequality will be true if a positive linear combination of \
+inequalities is true.\
+\>", "Text",
+ CellChangeTimes->{{3.548940061049189*^9, 3.5489401122589827`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nearde", "/.", 
+   RowBox[{"Less", "\[Rule]", "Subtract"}]}], "/.", 
+  RowBox[{"Or", "\[Rule]", "List"}]}], "\[IndentingNewLine]", 
+ RowBox[{"left", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "-", "a"}], ",", 
+      RowBox[{"a", "-", 
+       RowBox[{"1", "/", "2"}]}]}], "}"}], ".", "%"}], " ", "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], "&"}], 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"linear", " ", "combination"}], ",", " ", 
+     RowBox[{"\[Delta]", " ", "eliminated"}], ",", " ", 
+     RowBox[{"linear", " ", "in", " ", "\[Gamma]"}]}], " ", 
+    "*)"}]}]}]}], "Input",
+ CellChangeTimes->{{3.548864200586646*^9, 3.5488642014812593`*^9}, {
+  3.548870601873165*^9, 3.548870643224661*^9}, {3.548870683977401*^9, 
+  3.548870692623451*^9}, {3.5488707675660143`*^9, 3.548870794395611*^9}, {
+  3.54887087533223*^9, 3.548871023373169*^9}, {3.548871058500616*^9, 
+  3.548871108315473*^9}, {3.548871153096068*^9, 3.548871217025468*^9}, {
+  3.548871345176483*^9, 3.548871405122067*^9}, {3.5488715839009323`*^9, 
+  3.548871634502872*^9}, {3.548871900847674*^9, 3.548871915670154*^9}, {
+  3.548899459423283*^9, 3.548899465266644*^9}, {3.548899535434106*^9, 
+  3.548899641820332*^9}, {3.548900140318287*^9, 3.548900161603945*^9}, {
+  3.54890021612402*^9, 3.548900241842149*^9}, {3.5489003058246803`*^9, 
+  3.5489003383867064`*^9}, {3.5489003903228407`*^9, 3.548900615516446*^9}, {
+  3.548940141015751*^9, 3.548940145111384*^9}, {3.548940175926509*^9, 
+  3.548940359758074*^9}}],
+
+Cell["\<\
+Linear in \[Gamma], hence we need to check endpoints \[Gamma] = 0 and \
+\[Gamma] = 1.\
+\>", "Text",
+ CellChangeTimes->{{3.54894036796939*^9, 3.5489404037426453`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"both", "=", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"left", "<", "0"}], "/.", 
+      RowBox[{"\[Gamma]", "\[Rule]", "1"}]}], ",", 
+     RowBox[{
+      RowBox[{"left", "<", "0"}], "/.", 
+      RowBox[{"\[Gamma]", "\[Rule]", "0"}]}]}], "}"}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}]], "Input",
+ CellChangeTimes->{{3.54894044225355*^9, 3.54894054547336*^9}, {
+  3.548940694662324*^9, 3.548940695254836*^9}}],
+
+Cell["\<\
+The first inequality has negative signs for a, so we can put a = 1/2. The \
+second inequality is a cubic in a.\
+\>", "Text",
+ CellChangeTimes->{{3.5489405800620537`*^9, 3.548940604945565*^9}, {
+  3.548940635932535*^9, 3.5489406683670607`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"both", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"1", "/", "2"}]}]}], "//", "Reduce"}], "//", 
+  "N"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"both", "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "//", "Reduce"}], "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.548940699195407*^9, 3.5489407205172863`*^9}, {
+  3.5489407596328897`*^9, 3.548940772264336*^9}}],
+
+Cell["Hence we are done.", "Text",
+ CellChangeTimes->{{3.5489407829434834`*^9, 3.548940803026037*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Algorithm for polynomial inequalities", "Section",
+ CellChangeTimes->{{3.548980339841576*^9, 3.5489803621724443`*^9}}],
+
+Cell["\<\
+PolyNeg[P,{x,y},{dx,dy}]: show that polynomial P with variables x, y is \
+nonpositive on rectangle (0, 0) (dx, dy). True means it is, False means \
+algorithm failed. See http://www.ams.org/mathscinet-getitem?mr=MR2779073 for \
+detail.
+
+We can use this on large polynomials in all other cases.\
+\>", "Text",
+ CellChangeTimes->{{3.5489804760155354`*^9, 3.5489806103938837`*^9}, {
+  3.5490248846688337`*^9, 3.549024912106557*^9}, {3.54903673509548*^9, 
+  3.549036739102003*^9}, {3.549039338186799*^9, 3.549039341840995*^9}, {
+  3.549045851844508*^9, 3.549045891470367*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"CumFun", "[", 
+    RowBox[{"f_", ",", "l_"}], "]"}], ":=", 
+   RowBox[{"Rest", "[", 
+    RowBox[{"FoldList", "[", 
+     RowBox[{"f", ",", "0", ",", "l"}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PolyNeg", "[", 
+    RowBox[{"P_", ",", 
+     RowBox[{"{", 
+      RowBox[{"x_", ",", "y_"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"dx_", ",", "dy_"}], "}"}]}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Fold", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"CumFun", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"Min", "[", 
+                RowBox[{"#1", ",", "0"}], "]"}], "/", "dy"}], "+", "#2"}], 
+             "&"}], ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Map", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Max", "[", 
+                  RowBox[{"#1", ",", "0"}], "]"}], "&"}], ",", "#1"}], "]"}], 
+              "dx"}], "+", "#2"}]}], "]"}], "&"}], ",", "0", ",", 
+         RowBox[{"Reverse", "[", 
+          RowBox[{"CoefficientList", "[", 
+           RowBox[{"P", ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y"}], "}"}]}], "]"}], "]"}]}], "]"}], "//", 
+       "Max"}], ")"}], "\[LessEqual]", "0"}], ")"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.548980367949332*^9, 3.548980384326022*^9}, {
+  3.549046744450163*^9, 3.5490467707514973`*^9}, {3.549046825680255*^9, 
+  3.549046827752047*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Proof for triangles with 1/2 \[LessEqual] a \[LessEqual] 1 and b \
+\[GreaterEqual] 1.08.", "Section",
+ CellChangeTimes->{{3.5489407946677027`*^9, 3.54894084091107*^9}, {
+  3.5489548935250607`*^9, 3.5489549077644453`*^9}, {3.5489549783317537`*^9, 
+  3.548955012578807*^9}, {3.548955047513524*^9, 3.548955063497368*^9}}],
+
+Cell[BoxData["neareq"], "Input",
+ CellChangeTimes->{{3.5490245801742373`*^9, 3.549024581996784*^9}}],
+
+Cell["\<\
+Coefficient for \[Delta] is positive, hece we can put \[Delta] = 1/2. Now we \
+need to show that at least one inequolity is true for any \[Gamma]. Start \
+with inequality 3.\
+\>", "Text",
+ CellChangeTimes->{{3.549024586921536*^9, 3.5490246802938232`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neareq", "/.", 
+    RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+   RowBox[{"Less", "\[Rule]", "Subtract"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"%", "[", 
+     RowBox[{"[", "3", "]"}], "]"}], "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", 
+     RowBox[{"1", "/", "2"}]}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"RegionPlot", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"lin", ",", "\[Gamma]"}], "]"}], ">", "0"}], ",", 
+      RowBox[{"tri", "&&", 
+       RowBox[{"b", ">", "1.08"}], "&&", 
+       RowBox[{"a", ">", 
+        RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "0", ",", 
+      RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "red", " ", "are", " ", "is", " ", "where", " ", "we", " ", "need", " ", 
+     "a", " ", "proof"}], ",", " ", 
+    RowBox[{
+    "blue", " ", "has", " ", "positive", " ", "coefficient", " ", "for", " ", 
+     "\[Gamma]"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{"lin", ",", "\[Gamma]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5490246943828497`*^9, 3.54902475278194*^9}, {
+  3.5490248161909018`*^9, 3.549024876896228*^9}, {3.5490249193534393`*^9, 
+  3.5490249702398853`*^9}, {3.5490252976541243`*^9, 3.549025352387711*^9}, {
+  3.549036661101141*^9, 3.549036694752063*^9}}],
+
+Cell["\<\
+Derivative is clearly minimal for b = 1.08, and it has no zeros in the red \
+area. Hence we need to check only large values of \[Gamma]. Unfortunately \
+\[Gamma]=1 does not work. \
+\>", "Text",
+ CellChangeTimes->{{3.549025368821926*^9, 3.549025463866377*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"lin", "/.", 
+  RowBox[{"\[Gamma]", "\[Rule]", 
+   RowBox[{"2", "/", "3"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"%", "<", "0"}], ",", 
+      RowBox[{"tri", "&&", 
+       RowBox[{"b", ">", "1.08"}], "&&", 
+       RowBox[{"a", ">", 
+        RowBox[{"1", "/", "2"}]}]}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5490253559408627`*^9, 3.549025356623394*^9}, {
+  3.549025493222732*^9, 3.549025824285099*^9}, {3.549025892956317*^9, 
+  3.5490258936115837`*^9}, {3.5490259386222887`*^9, 3.549025968654365*^9}, {
+  3.549026198992261*^9, 3.5490261991682673`*^9}, {3.549026768289736*^9, 
+  3.5490267775767508`*^9}}],
+
+Cell["\<\
+It seems that inequality is true. We will use PolyNeg to prove this. First we \
+move the origin to the vertex with a=1/2.\
+\>", "Text",
+ CellChangeTimes->{{3.549025830784836*^9, 3.549025866107765*^9}, {
+  3.549026103947226*^9, 3.549026117042692*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Together", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"lin", "/.", 
+     RowBox[{"\[Gamma]", "\[Rule]", 
+      RowBox[{"2", "/", "3"}]}]}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+   RowBox[{"a", "\[Rule]", 
+    RowBox[{"a", "+", 
+     RowBox[{"1", "/", "2"}]}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly2", "=", 
+    RowBox[{
+     RowBox[{"Numerator", "[", "%", "]"}], 
+     RowBox[{"Denominator", "[", "%", "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "4"}], ",", 
+     RowBox[{"99", "/", "1000"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"poly", "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"99", "/", "1000"}]}]}]}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"1", "/", "9"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"15", "/", "100"}], ",", 
+     RowBox[{"1", "/", "10"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549025886460868*^9, 3.5490259236923103`*^9}, {
+  3.549025971696767*^9, 3.549026049713388*^9}, {3.549026083064043*^9, 
+  3.549026094839519*^9}, {3.5490261317658167`*^9, 3.549026163495777*^9}, {
+  3.549026222600803*^9, 3.549026356318005*^9}, {3.549026411160995*^9, 
+  3.549026698690586*^9}, {3.5490271696546907`*^9, 3.5490272343908157`*^9}, {
+  3.549027297640655*^9, 3.5490272987683287`*^9}, {3.5490294187650433`*^9, 
+  3.549029428140663*^9}, {3.549029465316311*^9, 3.5490295005384808`*^9}, {
+  3.549029588967347*^9, 3.549029589584372*^9}, {3.5490467774924393`*^9, 
+  3.549046778845078*^9}, {3.549057989579619*^9, 3.549057991059328*^9}}],
+
+Cell["\<\
+Hence inequality is true on the whole parameter space. Below is the plot of \
+the rectangles used for the algorithm.\
+\>", "Text",
+ CellChangeTimes->{{3.5490267058434343`*^9, 3.5490267516611977`*^9}, 
+   3.54903657113591*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"params", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"tri", "&&", 
+       RowBox[{"b", ">", "1.08"}], "&&", 
+       RowBox[{"a", ">", 
+        RowBox[{"1", "/", "2"}]}]}], "/.", 
+      RowBox[{"b", "\[Rule]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"1", "/", "2"}]}]}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"transformed", " ", "parameter", " ", "space"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly2", "<", "0"}], ",", "params", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"99", "/", "1000"}]}], "&&", 
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"1", "/", "4"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"99", "/", "1000"}], "<", "a", "<", 
+       RowBox[{"199", "/", "1000"}]}], "&&", 
+      RowBox[{
+       RowBox[{"1", "/", "9"}], "<", "b", "<", 
+       RowBox[{
+        RowBox[{"1", "/", "9"}], "+", 
+        RowBox[{"15", "/", "100"}]}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.05"}], ",", "0.3"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549027248729032*^9, 3.549027277336792*^9}, {
+  3.549027309400321*^9, 3.549027347323659*^9}, {3.5490294436846123`*^9, 
+  3.549029446259707*^9}, {3.549029512810783*^9, 3.549029538289168*^9}, {
+  3.549029594960441*^9, 3.549029673741887*^9}, {3.549058004227077*^9, 
+  3.5490580048267927`*^9}}],
+
+Cell["\<\
+Now we need to handle 1 >= \[Gamma] > 2/3. This time we will take a linear \
+combination of inequalities 1 and 3. \
+\>", "Text",
+ CellChangeTimes->{{3.5490296997670794`*^9, 3.5490297556528683`*^9}, {
+  3.5490298067957478`*^9, 3.549029810427878*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"neareq", "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+  RowBox[{"Less", "\[Rule]", "Subtract"}]}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"%", "[", 
+      RowBox[{"[", "3", "]"}], "]"}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"b", "-", "a"}], ")"}], 
+      RowBox[{"%", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}]}], "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", 
+     RowBox[{"1", "/", "2"}]}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{"%", ",", "\[Gamma]"}], "]"}], ">", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"b", ">", "1.08"}], "&&", 
+      RowBox[{"a", ">", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{"lin", ",", "\[Gamma]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5489448156836576`*^9, 3.548945006171234*^9}, {
+   3.548945040483247*^9, 3.54894516384792*^9}, {3.548945322440476*^9, 
+   3.548945354286944*^9}, {3.5489521962157593`*^9, 3.54895234617459*^9}, {
+   3.548952398503337*^9, 3.54895239868818*^9}, {3.548952456341613*^9, 
+   3.5489524645166607`*^9}, {3.548952539443138*^9, 3.548952650372982*^9}, {
+   3.5489526939444113`*^9, 3.5489527557681313`*^9}, {3.5489528005741577`*^9, 
+   3.548952801620987*^9}, 3.548952868603568*^9, {3.5489529078542013`*^9, 
+   3.54895295490663*^9}, {3.548952987641397*^9, 3.5489529905359383`*^9}, {
+   3.5489530299575377`*^9, 3.548953056570834*^9}, {3.5489531255141497`*^9, 
+   3.548953191685667*^9}, {3.548953242165429*^9, 3.5489532554884033`*^9}, {
+   3.548953319428914*^9, 3.548953512570472*^9}, {3.548953780822935*^9, 
+   3.548953911551825*^9}, {3.548954175470524*^9, 3.548954211836731*^9}, {
+   3.548955154478496*^9, 3.548955245600307*^9}, {3.548962825977366*^9, 
+   3.5489628356491947`*^9}, {3.548963831760448*^9, 3.548963832712294*^9}, {
+   3.548980825432659*^9, 3.548980861641863*^9}, {3.548980958924686*^9, 
+   3.548980980196167*^9}, {3.548981017729447*^9, 3.5489810195119047`*^9}, {
+   3.548981056329185*^9, 3.548981109712821*^9}, {3.548983866609228*^9, 
+   3.548983931243627*^9}, {3.548984024684746*^9, 3.548984068271978*^9}, {
+   3.548984110742972*^9, 3.548984114686602*^9}, {3.548984269496497*^9, 
+   3.548984359214717*^9}, {3.54898439376518*^9, 3.548984414156307*^9}, {
+   3.548984454425261*^9, 3.548984482384357*^9}, {3.5489847030904417`*^9, 
+   3.5489849072675867`*^9}, {3.548985210427187*^9, 3.548985243649563*^9}, {
+   3.5489854008431273`*^9, 3.5489854134261227`*^9}, {3.5489899040234537`*^9, 
+   3.5489899128052483`*^9}, {3.548989998591345*^9, 3.5489899998467712`*^9}, {
+   3.549029835725011*^9, 3.549029838554842*^9}, {3.549036633098085*^9, 
+   3.549036653706026*^9}, {3.54903676664849*^9, 3.5490368716868887`*^9}}],
+
+Cell["\<\
+Here it is not so clear that coefficient for \[Gamma] is negative, but we can \
+use the algorithm to prove this. Then we can put \[Gamma]=2/3.\
+\>", "Text",
+ CellChangeTimes->{{3.549036885759589*^9, 3.549036965743244*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"lin", "/.", 
+  RowBox[{"\[Gamma]", "\[Rule]", 
+   RowBox[{"2", "/", "3"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"%", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"b", ">", "1.08"}], "&&", 
+      RowBox[{"a", ">", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549036991906519*^9, 3.549037003418146*^9}}],
+
+Cell["Hence it appears that inequality is true. ", "Text",
+ CellChangeTimes->{{3.5490370102351933`*^9, 3.549037034105839*^9}, 
+   3.549037088142354*^9}],
+
+Cell[BoxData[{
+ RowBox[{"poly", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"lin", ",", "\[Gamma]"}], "]"}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+   RowBox[{"a", "\[Rule]", 
+    RowBox[{"a", "+", 
+     RowBox[{"1", "/", "2"}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "4"}], ",", 
+     RowBox[{"1", "/", "5"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549037156268817*^9, 3.549037180157177*^9}, {
+  3.549037235924459*^9, 3.549037265817338*^9}, {3.5490372972809258`*^9, 
+  3.54903729736968*^9}}],
+
+Cell["Hence derivative is negative.", "Text",
+ CellChangeTimes->{{3.549037313239894*^9, 3.549037331258376*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"params", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"tri", "&&", 
+       RowBox[{"b", ">", "1.08"}], "&&", 
+       RowBox[{"a", ">", 
+        RowBox[{"1", "/", "2"}]}]}], "/.", 
+      RowBox[{"b", "\[Rule]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"1", "/", "2"}]}]}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"transformed", " ", "parameter", " ", "space"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly", "<", "0"}], ",", "params", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "5"}]}], "&&", 
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"1", "/", "4"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.05"}], ",", "0.3"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5490372820731497`*^9, 3.549037299914115*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Together", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"lin", "/.", 
+     RowBox[{"\[Gamma]", "\[Rule]", 
+      RowBox[{"2", "/", "3"}]}]}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+   RowBox[{"a", "\[Rule]", 
+    RowBox[{"a", "+", 
+     RowBox[{"1", "/", "2"}]}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly2", "=", 
+    RowBox[{
+     RowBox[{"Numerator", "[", "%", "]"}], 
+     RowBox[{"Denominator", "[", "%", "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "4"}], ",", 
+     RowBox[{"5", "/", "100"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"poly", "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"5", "/", "100"}]}]}]}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"5", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "4"}], "-", 
+      RowBox[{"5", "/", "100"}]}], ",", 
+     RowBox[{"9", "/", "100"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"poly", "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"9", "/", "100"}]}]}]}], "/.", 
+    RowBox[{"b", "->", 
+     RowBox[{"b", "+", 
+      RowBox[{"12", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "4"}], "-", 
+      RowBox[{"17", "/", "100"}]}], ",", 
+     RowBox[{"6", "/", "100"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549037149174458*^9, 3.549037151078384*^9}, {
+  3.5490373521055193`*^9, 3.549037397101976*^9}, {3.5490374500950336`*^9, 
+  3.549037453615685*^9}, {3.549037499967758*^9, 3.549037740978703*^9}, {
+  3.549037800449045*^9, 3.5490378826433277`*^9}, {3.549058032372665*^9, 
+  3.549058033331987*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"params", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"tri", "&&", 
+       RowBox[{"b", ">", "1.08"}], "&&", 
+       RowBox[{"a", ">", 
+        RowBox[{"1", "/", "2"}]}]}], "/.", 
+      RowBox[{"b", "\[Rule]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "7", "]"}], "/", "2"}], "-", "b"}]}]}], "/.", 
+     RowBox[{"a", "\[Rule]", 
+      RowBox[{"a", "+", 
+       RowBox[{"1", "/", "2"}]}]}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"transformed", " ", "parameter", " ", "space"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly2", "<", "0"}], ",", "params", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "20"}]}], "&&", 
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"1", "/", "4"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"5", "/", "100"}], "<", "a", "<", 
+       RowBox[{"14", "/", "100"}]}], "&&", 
+      RowBox[{
+       RowBox[{"5", "/", "100"}], "<", "b", "<", 
+       RowBox[{"1", "/", "4"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"14", "/", "100"}], "<", "a", "<", 
+       RowBox[{"20", "/", "100"}]}], "&&", 
+      RowBox[{
+       RowBox[{"17", "/", "100"}], "<", "b", "<", 
+       RowBox[{"1", "/", "4"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", "0.25"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.05"}], ",", "0.3"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549037413664936*^9, 3.549037414216032*^9}, {
+   3.5490374669603777`*^9, 3.549037489326786*^9}, {3.549037644337936*^9, 
+   3.549037677832613*^9}, {3.549037748587738*^9, 3.549037790305849*^9}, 
+   3.5490580354989653`*^9}],
+
+Cell["\<\
+Hence a mixed inequality is true, so must be one of the inequalities.\
+\>", "Text",
+ CellChangeTimes->{{3.5490379081968946`*^9, 3.549037930637904*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Proof for nearly equilateral triangles (a <= 1/2).", "Section",
+ CellChangeTimes->{{3.549037039335908*^9, 3.549037075227519*^9}}],
+
+Cell[BoxData[
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"tri", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}], "&&", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "<", "b", "<", 
+       RowBox[{"Sqrt", "[", "3", "]"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.549038180441983*^9, 3.5490382136183577`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"neareq", "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+  RowBox[{"Less", "\[Rule]", "Subtract"}]}]], "Input",
+ CellChangeTimes->{{3.5490379579500017`*^9, 3.5490379727675056`*^9}}],
+
+Cell["\<\
+Here we have 3 reference triangles, and no easy way of handling all cases \
+together. In order to show that at least one inequality is true, we must show \
+that the same is true on the boundary of 0 <= \[Gamma] <= 1 and -1/2 <= \
+\[Delta] <= 1/2. Since three lines (in \[Gamma] and \[Delta])  giving the \
+three inequalities may for a trinagle, we also need to check a point inside \
+this triangle. The easiest way to get a point inside is to find vertices and \
+average them.\
+\>", "Text",
+ CellChangeTimes->{{3.549037978628201*^9, 3.549038102797513*^9}, {
+  3.5490382466020527`*^9, 3.549038414271367*^9}, {3.549041984404385*^9, 
+  3.5490420168692427`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Case \[Gamma] = 1 :", "Subsection",
+ CellChangeTimes->{{3.549038447174919*^9, 3.5490384754099693`*^9}}],
+
+Cell["\<\
+Take the first inequality and put \[Delta] = 1/2 (worst case, positive \
+coefficient).\
+\>", "Text",
+ CellChangeTimes->{{3.549038480587357*^9, 3.54903856780342*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neareq", "/.", 
+    RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+   RowBox[{"Less", "\[Rule]", "Subtract"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"%", "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "/.", 
+  RowBox[{"\[Gamma]", "\[Rule]", "1"}]}], "\[IndentingNewLine]", 
+ RowBox[{"rational", "=", 
+  RowBox[{"%", "/.", 
+   RowBox[{"\[Delta]", "\[Rule]", 
+    RowBox[{"1", "/", "2"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"rational", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "\[LessEqual]", 
+       RowBox[{"1", "/", "2"}]}], "&&", 
+      RowBox[{"b", "\[GreaterEqual]", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549038543822935*^9, 3.549038620286076*^9}, {
+  3.549038658072667*^9, 3.549038742850966*^9}, {3.5490387920705147`*^9, 
+  3.549038797875626*^9}, {3.549038838313547*^9, 3.5490390762564287`*^9}, {
+  3.549039275376802*^9, 3.5490392792001257`*^9}, {3.5490394268683453`*^9, 
+  3.549039446447904*^9}}],
+
+Cell["\<\
+Note that denominator is just the upper bound, so it is positive. Hence we \
+can take a numerator of the common fraction. We can also add any expression \
+that is positive on the parameter space (red area).\
+\>", "Text",
+ CellChangeTimes->{{3.549039090730488*^9, 3.549039220939496*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"poly", "=", 
+  RowBox[{
+   RowBox[{"Numerator", "[", 
+    RowBox[{"Together", "[", "rational", "]"}], "]"}], "+", 
+   RowBox[{"2000", 
+    RowBox[{"(", 
+     RowBox[{"4", "-", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a", "+", "1"}], ")"}], "^", "2"}], "-", 
+      RowBox[{"b", "^", "2"}]}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"b", "-", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "\[LessEqual]", 
+       RowBox[{"1", "/", "2"}]}], "&&", 
+      RowBox[{"b", "\[GreaterEqual]", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", "2"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549039232077723*^9, 3.54903929522681*^9}, {
+  3.5490393904921703`*^9, 3.549039394910226*^9}, {3.54903944062871*^9, 
+  3.549039442508224*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"pol", "=", 
+    RowBox[{"pol2", "=", 
+     RowBox[{"poly", "/.", 
+      RowBox[{"b", "\[Rule]", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "equilateral", " ", "gives", " ", "0", " ", "for", " ", "this", " ", 
+     "polynomial"}], ",", " ", 
+    RowBox[{
+    "so", " ", "it", " ", "is", " ", "a", " ", "good", " ", "starting", " ", 
+     "pooint", " ", "for", " ", "the", " ", "algorithm"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"pol", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"2", "/", "3"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pol", "=", 
+   RowBox[{"pol", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"2", "/", "3"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"pol", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "3"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"tri", "&&", 
+     RowBox[{"a", "<", 
+      RowBox[{"1", "/", "2"}]}], "&&", 
+     RowBox[{"b", ">", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}], "}"}], "/.", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"transformed", " ", "parameters"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"pol", "<", "0"}], ",", "%", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}], "&&", 
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"2", "/", "3"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}], "&&", 
+      RowBox[{
+       RowBox[{"2", "/", "3"}], "<", "b", "<", "1"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549038541188521*^9, 3.5490385420778008`*^9}, {
+  3.5490397364262533`*^9, 3.549040239426669*^9}, {3.549058072100245*^9, 
+  3.549058081995557*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case \[Delta] = 1/2 :", "Subsection",
+ CellChangeTimes->{{3.54904031288617*^9, 3.549040317096414*^9}, {
+  3.549040350693684*^9, 3.549040366652278*^9}, {3.549040502141884*^9, 
+  3.5490405173740187`*^9}, {3.549045025200313*^9, 3.549045030868019*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neareq", "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", 
+     RowBox[{"1", "/", "2"}]}]}], "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+  RowBox[{"Less", "\[Rule]", "Subtract"}]}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{"%", "[", 
+    RowBox[{"[", "3", "]"}], "]"}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{"lin", ",", "\[Gamma]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.54904503239734*^9, 3.549045037293927*^9}, {
+  3.5490515871535053`*^9, 3.549051662266037*^9}, {3.5490517024799757`*^9, 
+  3.549051765838777*^9}, {3.5490517993129272`*^9, 3.549051799647448*^9}}],
+
+Cell["Hence coefficient for \[Gamma] is positive. Put \[Gamma] =2/3.", "Text",
+ CellChangeTimes->{{3.5490518051730947`*^9, 3.549051844284778*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"lin", "/.", 
+  RowBox[{"\[Gamma]", "\[Rule]", 
+   RowBox[{"2", "/", "3"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"%", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549051847653967*^9, 3.5490518870641823`*^9}, {
+  3.549051936948265*^9, 3.5490519407883*^9}}],
+
+Cell["\<\
+Inequality appears to hold for \[Gamma] <= 2/3. Note that denominator is \
+positive (upper bound for eigenvalue) hance we can take just the numerator of \
+common fraction. We can also add anything that is positive on our parameter \
+space and negative elsewhere.\
+\>", "Text",
+ CellChangeTimes->{{3.549051905129567*^9, 3.549051931402753*^9}, 
+   3.549051974237369*^9, {3.5490524357446117`*^9, 3.549052518646399*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Together", "[", 
+  RowBox[{"lin", "/.", 
+   RowBox[{"\[Gamma]", "\[Rule]", 
+    RowBox[{"2", "/", "3"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"p", "=", 
+  RowBox[{
+   RowBox[{"Numerator", "[", "%", "]"}], "+", 
+   RowBox[{
+    RowBox[{"10", "^", "4"}], 
+    RowBox[{"(", 
+     RowBox[{"4", "-", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a", "+", "1"}], ")"}], "^", "2"}], "-", 
+      RowBox[{"b", "^", "2"}]}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"b", "-", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549051978182836*^9, 3.549052430791174*^9}, {
+  3.549052526252087*^9, 3.549052574523284*^9}, {3.54905261447425*^9, 
+  3.549052616793832*^9}, {3.549053563221965*^9, 3.549053572577696*^9}}],
+
+Cell["\<\
+Again inequality seems to be true. Note that for eqilateral traingle we have \
+equality here.\
+\>", "Text",
+ CellChangeTimes->{{3.549052592335731*^9, 3.5490526060949*^9}, {
+  3.549053583259502*^9, 3.549053598762398*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly2", "=", 
+    RowBox[{"p", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"14", "/", "100"}], ",", 
+     RowBox[{"25", "/", "100"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"14", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"31", "/", "100"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"31", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"45", "/", "100"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"tri", "&&", 
+     RowBox[{"a", "<", 
+      RowBox[{"1", "/", "2"}]}]}], "}"}], "/.", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly2", "<", "0"}], ",", "%", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"14", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"25", "/", "100"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"14", "/", "100"}], "<", "b", "<", 
+       RowBox[{"45", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"45", "/", "100"}], "<", "b", "<", 
+       RowBox[{"90", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549052608395791*^9, 3.54905303767492*^9}, {
+  3.549053077801453*^9, 3.549053446346943*^9}, {3.549058134148354*^9, 
+  3.549058138338924*^9}}],
+
+Cell["For the case \[Gamma] > 2/3 we can take the first inequality.", "Text",
+ CellChangeTimes->{{3.549053504909574*^9, 3.5490535295843163`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"neareq", "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", 
+     RowBox[{"1", "/", "2"}]}]}], "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+  RowBox[{"Less", "\[Rule]", "Subtract"}]}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{"%", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{"lin", ",", "\[Gamma]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549053618381822*^9, 3.549053618876052*^9}, {
+  3.549053697348124*^9, 3.5490537097449923`*^9}, {3.5490574090620403`*^9, 
+  3.549057460152711*^9}}],
+
+Cell["Hence derivative is clearly negative. Put \[Gamma] = 2/3.", "Text",
+ CellChangeTimes->{{3.549057481477923*^9, 3.549057506053334*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"lin", "/.", 
+  RowBox[{"\[Gamma]", "\[Rule]", 
+   RowBox[{"2", "/", "3"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"%", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input"],
+
+Cell["\<\
+Inequality appears to hold for \[Gamma] >= 2/3. Denominator is positive \
+(upper bound for eigenvalue) hance we can take just the numerator of common \
+fraction. We can also add anything that is positive on our parameter space \
+and negative elsewhere.\
+\>", "Text",
+ CellChangeTimes->{{3.5490575354652863`*^9, 3.54905755458755*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Together", "[", 
+  RowBox[{"lin", "/.", 
+   RowBox[{"\[Gamma]", "\[Rule]", 
+    RowBox[{"2", "/", "3"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"p", "=", 
+  RowBox[{
+   RowBox[{"Numerator", "[", "%", "]"}], "+", 
+   RowBox[{"7", "*", 
+    RowBox[{"10", "^", "3"}], 
+    RowBox[{"(", 
+     RowBox[{"4", "-", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"a", "+", "1"}], ")"}], "^", "2"}], "-", 
+      RowBox[{"b", "^", "2"}]}], ")"}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"b", "-", "1"}], ")"}], "^", "2"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549057602343397*^9, 3.549057711746688*^9}, {
+  3.5490584499985037`*^9, 3.5490584793803587`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly2", "=", 
+    RowBox[{"p", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"23", "/", "100"}], ",", 
+     RowBox[{"33", "/", "100"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"23", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"43", "/", "100"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"43", "/", "100"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"15", "/", "100"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"poly", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{"b", "+", 
+       RowBox[{"15", "/", "100"}]}]}]}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"a", "+", 
+      RowBox[{"1", "/", "3"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"8", "/", "100"}], ",", 
+     RowBox[{"1", "/", "6"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"tri", "&&", 
+     RowBox[{"a", "<", 
+      RowBox[{"1", "/", "2"}]}]}], "}"}], "/.", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"poly2", "<", "0"}], ",", "%", ",", 
+     RowBox[{
+      RowBox[{"0", "<", "b", "<", 
+       RowBox[{"23", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"33", "/", "100"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"23", "/", "100"}], "<", "b", "<", 
+       RowBox[{"66", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"66", "/", "100"}], "<", "b", "<", 
+       RowBox[{"81", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"81", "/", "100"}], "<", "b", "<", 
+       RowBox[{"89", "/", "100"}]}], "&&", 
+      RowBox[{
+       RowBox[{"1", "/", "3"}], "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549057945337461*^9, 3.5490579525356913`*^9}, {
+  3.5490581539542837`*^9, 3.549058434104457*^9}, {3.549058505881369*^9, 
+  3.549058610774221*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case \[Delta] = -1/2 :", "Subsection",
+ CellChangeTimes->{{3.5490403701253433`*^9, 3.5490403830395937`*^9}}],
+
+Cell["\<\
+Take a positive linear combination of the first 2 inequalities. Note that \
+b+a-1 is positive.\
+\>", "Text",
+ CellChangeTimes->{{3.5490426744556*^9, 3.549042687499741*^9}, {
+  3.549042750819985*^9, 3.549042762827784*^9}, {3.549043537769483*^9, 
+  3.549043544553297*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"neareq", "/.", 
+     RowBox[{"\[Delta]", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "/", "2"}]}]}], "/.", 
+    RowBox[{"Or", "\[Rule]", "List"}]}], "/.", 
+   RowBox[{"Less", "\[Rule]", "Subtract"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"l1", "=", 
+  RowBox[{"%", "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"l2", "=", 
+  RowBox[{"%%", "[", 
+   RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"b", "+", "a", "-", "1"}], ")"}], "l2"}], "+", 
+    RowBox[{
+     RowBox[{"8", "/", "7"}], 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}], ")"}], "l1"}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdzl1IU2EAxvGzZRgLW05iUpltzpFzmIEsw8WYEi4XJUNWYJTMOTRkGVlB
+XsyyrWGy2cKPsC0imaVDqWB5kUIYZTimWVnRKNqwnez0sdqJmkm9z7l4+MFz
+9ZeYjhsa+BRFKckgbzD1KtGypO2VC2lYtesIAzuzznG6dF0spLZPcDJDevEP
+Yvj+2hwYmsqVQvtcrQI2ssE+SPtVXjjdUnwD3vX1TcOP4s5ZOB5p+gAfmvPj
+8Fqe/gvc2131G/ouUVk/iTpNhRiGPs1tgrdsSSn3Dwe2QXuJoBjSf27uhJbd
+/WqoiO+rhM2p7gPQN1l0EMrSpbXQ6Yg0wYGkxAqPpVeegdWt9g5Yenb+ImRW
++muWiaonazrgdXbABdu/v/PAqHbVc3jlZSwCdY9G4/Bw4WkaVnv3/IPlkwuc
+j+m2rX+J2SK3DOYEGt3QezLcA0V8z50VYkbBDKeheXQcxp6Fo/C8+huTcYL0
+Bn3L8FB0P28d0ZK2mAs/x/x5cGlMboSOslOvYevGuEBIdD3gCeFCQLMeWrYU
+bIAlCeVm6LhwVAKfumuUcL7dvAMOljvLYKp0RAupukVOze3LOqh8YdVDlfq9
+ERr9rAkKbfVX4de6Bk7BvaK0CqJMMbUatr1lMmFPrDcbWuWJQhjk/+J0ThhM
+8M1s1AyTIY8NspmiLvgfyDJ1UA==
+  "]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"D", "[", 
+   RowBox[{"lin", ",", "\[Gamma]"}], "]"}], "//", 
+  RowBox[{
+   RowBox[{"Collect", "[", 
+    RowBox[{"#", ",", "a", ",", "FullSimplify"}], "]"}], 
+   "&"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"%", "<", "0"}], "/.", 
+    RowBox[{"a", "\[Rule]", "0"}]}], "//", "Reduce"}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"%%", "<", "0"}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"1", "-", "b"}]}]}], "//", "Reduce"}], "//", 
+  "FullSimplify"}]}], "Input",
+ CellChangeTimes->{{3.5490428907129583`*^9, 3.5490428938649683`*^9}, {
+  3.549043045298258*^9, 3.54904308294044*^9}, {3.549043424060499*^9, 
+  3.5490434439243717`*^9}, {3.549043517206306*^9, 3.5490436021415653`*^9}, {
+  3.549043832242505*^9, 3.5490441829043627`*^9}, {3.549044220281066*^9, 
+  3.549044251791873*^9}, {3.549044345198349*^9, 3.549044462055406*^9}, {
+  3.5490445202022467`*^9, 3.549044611719557*^9}, {3.549044667842743*^9, 
+  3.549044671498165*^9}, {3.5490447015696087`*^9, 3.5490448250846167`*^9}}],
+
+Cell["\<\
+Note that all coefficients for powers of a are negative (knowing that \
+b<=Sqrt[3]). We want to show that the coefficient of \[Gamma] is less than 0, \
+so plug a=0. This gives 1<b<Sqrt[3]. For a=1-b we get b<1.
+Hence coefficient of \[Gamma] is negative. Put \[Gamma]=0.\
+\>", "Text",
+ CellChangeTimes->{{3.54904310047965*^9, 3.549043145141986*^9}, {
+  3.549044843674429*^9, 3.549044969352054*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Together", "[", 
+  RowBox[{"lin", "/.", 
+   RowBox[{"\[Gamma]", "\[Rule]", "0"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"p", "=", 
+  RowBox[{
+   RowBox[{"Numerator", "[", "%", "]"}], 
+   RowBox[{"Denominator", "[", "%", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Flatten", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"%", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{"%", ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.549043153619505*^9, 3.549043184793635*^9}, {
+  3.5490432510128527`*^9, 3.549043267437047*^9}, {3.5490433002531424`*^9, 
+  3.549043300555963*^9}, {3.5490433326280327`*^9, 3.549043339722171*^9}}],
+
+Cell["Hence inequality should hold.", "Text",
+ CellChangeTimes->{{3.549043275288478*^9, 3.5490432966837177`*^9}, {
+  3.549044990444571*^9, 3.5490449929243793`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"p", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "5"}], ",", 
+     RowBox[{"12", "/", "100"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"poly", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{"b", "+", 
+      RowBox[{"1", "/", "5"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PolyNeg", "[", 
+   RowBox[{"poly", ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "a"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"35", "/", "100"}], ",", 
+      RowBox[{"12", "/", "100"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"p", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "b"}]}]}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "-", "a"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PolyNeg", "[", 
+   RowBox[{"poly", ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "a"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", 
+      RowBox[{"38", "/", "100"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"p", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "b"}]}]}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{
+      RowBox[{"12", "/", "100"}], "-", "a"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PolyNeg", "[", 
+   RowBox[{"poly", ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "a"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"32", "/", "100"}], ",", 
+      RowBox[{"12", "/", "100"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Flatten", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "<", "0"}], ",", "tri", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "-", 
+        RowBox[{"20", "/", "100"}]}], "<", "b", "<", 
+       RowBox[{"Sqrt", "[", "3", "]"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"12", "/", "100"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "-", 
+        RowBox[{"55", "/", "100"}]}], "<", "b", "<", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "-", 
+        RowBox[{"20", "/", "100"}]}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"12", "/", "100"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "<", "b", "<", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", 
+        RowBox[{"32", "/", "100"}]}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"12", "/", "100"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "<", "b", "<", 
+       RowBox[{"Sqrt", "[", "3", "]"}]}], "&&", 
+      RowBox[{
+       RowBox[{"12", "/", "100"}], "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{"%", ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.548936998855254*^9, 3.548937102315649*^9}, {
+  3.548937153538197*^9, 3.548937340271861*^9}, {3.548937486025714*^9, 
+  3.548937658277505*^9}, {3.5489376956737432`*^9, 3.54893775147027*^9}, {
+  3.5490433656337957`*^9, 3.549043365945981*^9}, {3.549058639954391*^9, 
+  3.549058654448495*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Case \[Gamma] = 0 :", "Subsection",
+ CellChangeTimes->{{3.5490404170446453`*^9, 3.5490404436548643`*^9}, {
+  3.549040523359001*^9, 3.549040523750186*^9}, {3.549045055779422*^9, 
+  3.549045058779192*^9}}],
+
+Cell["\<\
+Here we can take a linear combination of inequalities 2 and, in such a way \
+that \[Delta] gets cancelled.\
+\>", "Text",
+ CellChangeTimes->{{3.549059280705112*^9, 3.5490593205036793`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"neareq", "/.", 
+     RowBox[{"\[Gamma]", "->", "0"}]}], "/.", 
+    RowBox[{"r", "\[Rule]", "List"}]}], "/.", 
+   RowBox[{"Less", "\[Rule]", "Subtract"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"l1", "=", 
+  RowBox[{"%", "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"l2", "=", 
+  RowBox[{"%%", "[", 
+   RowBox[{"[", "3", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"lin", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", "l2"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"1", "/", "2"}], "-", "a"}], ")"}], "l1"}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", "\[Gamma]", ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"%", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549045060536891*^9, 3.5490450684451857`*^9}, {
+  3.549058691358362*^9, 3.549058697156433*^9}, {3.549059139112074*^9, 
+  3.54905926556116*^9}, {3.549059393815345*^9, 3.5490594137028427`*^9}, {
+  3.549060197060391*^9, 3.54906022968616*^9}, {3.54906030274367*^9, 
+  3.549060303021817*^9}}],
+
+Cell["Inequality seems true. Again we take just the numerator.", "Text",
+ CellChangeTimes->{{3.549059326872778*^9, 3.549059358825774*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p", "=", 
+   RowBox[{"Numerator", "[", "lin", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"p", "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{"97", "/", "100"}], "+", "b"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"8", "/", "10"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{
+    RowBox[{"p", "/.", 
+     RowBox[{"b", "\[Rule]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "b"}]}]}], "/.", 
+    RowBox[{"a", "\[Rule]", 
+     RowBox[{"a", "+", 
+      RowBox[{"1", "/", "5"}]}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "5"}], ",", 
+     RowBox[{"3", "/", "10"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "<", "0"}], ",", 
+     RowBox[{"tri", "&&", 
+      RowBox[{"a", "<", 
+       RowBox[{"1", "/", "2"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"97", "/", "100"}], "<", "b", "<", 
+       RowBox[{"177", "/", "100"}]}], "&&", 
+      RowBox[{"0", "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "<", "b", "<", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", 
+        RowBox[{"1", "/", "5"}]}]}], "&&", 
+      RowBox[{
+       RowBox[{"1", "/", "5"}], "<", "a", "<", 
+       RowBox[{"1", "/", "2"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "0.1"}], ",", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{
+      RowBox[{"-", "0.1"}], "+", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "+", "0.1"}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.549059377100957*^9, 3.549059385699111*^9}, {
+  3.549060312210752*^9, 3.549060542610222*^9}, {3.549060629110796*^9, 
+  3.5490609641057*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Interior point :", "Subsection",
+ CellChangeTimes->{{3.549040448743236*^9, 3.549040472650754*^9}}],
+
+Cell["\<\
+Here we take all pairs of inequlities as equations of lines in (\[Gamma], \
+\[Delta]) and set them equal 0. We get vertices of  the triangle formed by \
+the lines. Average of the vertices gives a center of mass which is inside of \
+the triangle. One of the inequalities must be true at this point if the point \
+is in the parameter space.\
+\>", "Text",
+ CellChangeTimes->{{3.549040527806943*^9, 3.549040707845882*^9}, {
+  3.549040950241206*^9, 3.549040985716963*^9}, {3.5490423158136253`*^9, 
+  3.549042406600923*^9}, {3.549042581054144*^9, 3.549042591950132*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"lines", "=", 
+  RowBox[{
+   RowBox[{"neareq", "/.", 
+    RowBox[{"Less", "\[Rule]", "Subtract"}]}], "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}], "/.", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", 
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "0"}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Solve", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}]}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "&"}]}], "//", "FullSimplify"}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}], "/.", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "0"}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Solve", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}]}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "&"}]}], "//", "FullSimplify"}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}], "/.", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", 
+      RowBox[{"lines", "[", 
+       RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "0"}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Solve", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}]}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "&"}]}], "//", "FullSimplify"}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"%", "+", "%%", "+", "%%%"}], ")"}], "/", "3"}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"neareq", "/.", 
+     RowBox[{"\[Gamma]", "\[Rule]", 
+      RowBox[{"%", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}]}], "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", 
+     RowBox[{"%", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}]}], "/.", 
+   RowBox[{"Or", "\[Rule]", "List"}]}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{"p", "=", 
+  RowBox[{"%", "[", 
+   RowBox[{"[", 
+    RowBox[{"3", ",", "1"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", ">", "0"}], ",", "tri"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.54889868528397*^9, 3.548898964829337*^9}, {
+  3.5490407310994263`*^9, 3.549040762328467*^9}, {3.549040796654748*^9, 
+  3.549040841480256*^9}, {3.549040875967239*^9, 3.5490408790786858`*^9}, {
+  3.549042034107347*^9, 3.54904226307336*^9}, {3.549042296503496*^9, 
+  3.549042296655366*^9}, {3.54904241499543*^9, 3.549042415045282*^9}, {
+  3.5490426189313307`*^9, 3.549042631431652*^9}, {3.549053786623908*^9, 
+  3.549053824533436*^9}, {3.5490538609616413`*^9, 3.549053889030138*^9}, {
+  3.5490540508433123`*^9, 3.5490540587464952`*^9}, {3.549054159947957*^9, 
+  3.549054161819491*^9}, {3.549061026499661*^9, 3.549061130504243*^9}}],
+
+Cell["\<\
+Hence the third inequyality should be true at the center of mass (even if it \
+is not inside of the parameter space). Note that this polynomial is a product \
+of ab^2, upper bound for eigenvalue and the last factor which should be \
+positive.\
+\>", "Text",
+ CellChangeTimes->{{3.5490425437673893`*^9, 3.549042603203239*^9}, {
+  3.549054068944311*^9, 3.549054143522459*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"poly", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"p", "[", 
+      RowBox[{"[", "4", "]"}], "]"}]}], "/.", 
+    RowBox[{"b", "\[Rule]", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "-", "b"}]}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "a"}], "}"}], ",", "FullSimplify"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"PolyNeg", "[", 
+  RowBox[{"poly", ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "a"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.5490426426343193`*^9, 3.549042648669094*^9}, {
+  3.5490541453557177`*^9, 3.5490544721654167`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Spectral gap for an acute triangle", "Section",
+ CellChangeTimes->{{3.549054962306843*^9, 3.549055014796089*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "TrigInt`"}]}], "Input",
+ CellChangeTimes->{3.666534208763095*^9}],
+
+Cell["\<\
+Here we can numerically optimize a test function, rationalize coefficient and \
+find symbolic upper bound. We can also find optimal lower bound based on at \
+least 3 reference triangles.\
+\>", "Text",
+ CellChangeTimes->{{3.549054994691601*^9, 3.549055078135584*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Tables of eigenfunctions", "Subsection",
+ CellChangeTimes->{{3.5490730706535463`*^9, 3.549073085168239*^9}}],
+
+Cell["Sorted eigenfunctions for known cases. ", "Text",
+ CellChangeTimes->{{3.549073715455719*^9, 3.5490737341297207`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"?", "Equilateral"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "Square"}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Equilateral", "Subsubsection",
+ CellChangeTimes->{{3.549073416814578*^9, 3.5490734274140043`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"num", "=", "13"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Equilateral", "[", "\"\<Eigenvalue\>\"", "]"}], "[", 
+       RowBox[{"a", ",", "b"}], "]"}], ",", "a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0", ",", "num"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "0", ",", "num"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"max", "=", 
+   RowBox[{"%", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"%%", "//", 
+     RowBox[{
+      RowBox[{"Flatten", "[", 
+       RowBox[{"#", ",", "1"}], "]"}], "&"}]}], "//", 
+    RowBox[{
+     RowBox[{"Sort", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "<=", 
+         RowBox[{"#2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "&"}]}], "]"}], "&"}]}], "//", 
+   RowBox[{
+    RowBox[{"Select", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", "max"}], "&"}]}], 
+     "]"}], "&"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Rest", "/@", "%"}], "//", "Rest"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eqeigfun", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"#1", "\[LessEqual]", "#2"}], ",", 
+         RowBox[{
+          RowBox[{"Equilateral", "[", 
+           RowBox[{"\"\<Neumann\>\"", ",", "\"\<Symmetric\>\""}], "]"}], "[", 
+          
+          RowBox[{"#1", ",", "#2"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"Equilateral", "[", 
+           RowBox[{"\"\<Neumann\>\"", ",", "\"\<Antisymmetric\>\""}], "]"}], 
+          "[", 
+          RowBox[{"#1", ",", "#2"}], "]"}]}], "]"}], "&"}], "@@", "#"}], 
+     "&"}], "/@", "%"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "eqeigfun", "]"}]}], "Input",
+ CellChangeTimes->{{3.5490706161745033`*^9, 3.54907068232866*^9}, {
+  3.5490708533928957`*^9, 3.549070956942431*^9}, {3.5490709887746162`*^9, 
+  3.549071191603372*^9}, {3.549071237493342*^9, 3.549071458312584*^9}, {
+  3.549071509677302*^9, 3.549071549138068*^9}, {3.549071991495*^9, 
+  3.5490721868627234`*^9}, {3.549072220701105*^9, 3.549072223465602*^9}, {
+  3.549072294094183*^9, 3.549072395791272*^9}, {3.54907243587784*^9, 
+  3.5490724842360773`*^9}, {3.54907302453384*^9, 3.549073026090159*^9}, {
+  3.549073099966854*^9, 3.549073134334429*^9}, {3.549073661859528*^9, 
+  3.549073674969988*^9}, {3.6665342629535723`*^9, 3.666534280293347*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["30 - 60 - 90", "Subsubsection",
+ CellChangeTimes->{{3.549073431376108*^9, 3.5490734449873123`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"num", "=", "17"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Equilateral", "[", 
+        RowBox[{"\"\<Eigenvalue\>\"", ",", "\"\<Half\>\""}], "]"}], "[", 
+       RowBox[{"a", ",", "b"}], "]"}], ",", "a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0", ",", "num"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "0", ",", "num"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"max", "=", 
+   RowBox[{"%", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"%%", "//", 
+     RowBox[{
+      RowBox[{"Flatten", "[", 
+       RowBox[{"#", ",", "1"}], "]"}], "&"}]}], "//", 
+    RowBox[{
+     RowBox[{"Sort", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "<=", 
+         RowBox[{"#2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "&"}]}], "]"}], "&"}]}], "//", 
+   RowBox[{
+    RowBox[{"Select", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "\[LessEqual]", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], "&&", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", "max"}]}], "&"}]}], 
+     "]"}], "&"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Rest", "/@", "%"}], "//", "Rest"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"heigfun", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Equilateral", "[", 
+       RowBox[{"\"\<Neumann\>\"", ",", "\"\<Half\>\""}], "]"}], "@@", "#"}], 
+     "&"}], "/@", "%"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "heigfun", "]"}]}], "Input",
+ CellChangeTimes->{{3.549073162650363*^9, 3.549073297231398*^9}, {
+  3.549073395478415*^9, 3.5490733982099543`*^9}, {3.5490736382593603`*^9, 
+  3.549073655409409*^9}, {3.6665342891992083`*^9, 3.666534301420376*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Right isosceles", "Subsubsection",
+ CellChangeTimes->{{3.549073451449925*^9, 3.549073465971079*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"num", "=", "15"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Square", "[", "\"\<Eigenvalue\>\"", "]"}], "[", 
+       RowBox[{"a", ",", "b"}], "]"}], ",", "a", ",", "b"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "0", ",", "num"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", "0", ",", "num"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"max", "=", 
+  RowBox[{"%", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"%%", "//", 
+     RowBox[{
+      RowBox[{"Flatten", "[", 
+       RowBox[{"#", ",", "1"}], "]"}], "&"}]}], "//", 
+    RowBox[{
+     RowBox[{"Sort", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "<=", 
+         RowBox[{"#2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "&"}]}], "]"}], "&"}]}], "//", 
+   RowBox[{
+    RowBox[{"Select", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "\[LessEqual]", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], "&&", 
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", "max"}]}], "&"}]}], 
+     "]"}], "&"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Rest", "/@", "%"}], "//", "Rest"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rieigfun", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Square", "[", 
+       RowBox[{"\"\<Neumann\>\"", ",", "\"\<Half\>\""}], "]"}], "@@", "#"}], 
+     "&"}], "/@", "%"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "rieigfun", "]"}]}], "Input",
+ CellChangeTimes->{{3.549073481956456*^9, 3.5490735236090193`*^9}, {
+  3.549073557053747*^9, 3.549073649818198*^9}, {3.54907368123492*^9, 
+  3.549073706211293*^9}, {3.666534318447064*^9, 3.6665343263887978`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Optimal upper bound.", "Subsection",
+ CellChangeTimes->{{3.549055080736697*^9, 3.5490551506117887`*^9}}],
+
+Cell["\<\
+Take the first ? eigenfunctions for the 3 known cases and transplant them. I \
+should also implement rotated transplantations.\
+\>", "Text",
+ CellChangeTimes->{{3.5490551554907017`*^9, 3.54905518680474*^9}, {
+  3.5490553175821238`*^9, 3.5490553361733418`*^9}, {3.549061471915366*^9, 
+  3.549061473747118*^9}, {3.549061540345283*^9, 3.5490615464729967`*^9}, {
+  3.5491105613751097`*^9, 3.549110613369216*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"T2", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"T2", "[", 
+    RowBox[{"a_", ",", "b_", ",", "cond_"}], "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], ",", "cond"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ri", "=", 
+   RowBox[{"h", "=", 
+    RowBox[{"eq", "=", "5"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Take", "[", 
+   RowBox[{"eqeigfun", ",", "eq"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Transplant", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"RotateLeft", "[", 
+       RowBox[{"T2", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], "]"}], ",", 
+      RowBox[{"Equilateral", "[", "]"}]}], "]"}], "&"}], "/@", "%"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eqc", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"ceq", "[", "i", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "eq"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eqtest", "=", 
+    RowBox[{"eqc", ".", "%%"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Take", "[", 
+   RowBox[{"heigfun", ",", "h"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Transplant", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"Reverse", "[", 
+       RowBox[{"T2", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], "]"}], ",", 
+      RowBox[{"Equilateral", "[", "\"\<Half\>\"", "]"}]}], "]"}], "&"}], "/@",
+    "%"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hc", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"ch", "[", "i", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "h"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"htest", " ", "=", 
+    RowBox[{"hc", ".", "%%"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Take", "[", 
+   RowBox[{"rieigfun", ",", "ri"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Transplant", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"Reverse", "[", 
+       RowBox[{"T2", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], "]"}], ",", 
+      RowBox[{"Square", "[", "\"\<Half\>\"", "]"}]}], "]"}], "&"}], "/@", 
+   "%"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ric", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"cri", "[", "i", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "ri"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ritest", "=", 
+    RowBox[{"ric", ".", "%%"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "c", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"test", "=", 
+   RowBox[{"eqtest", "+", "htest", "+", "ritest"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TrigInt", "[", 
+   RowBox[{"test", ",", 
+    RowBox[{"Limits", "[", 
+     RowBox[{"T2", "[", 
+      RowBox[{"a", ",", "b", ",", 
+       RowBox[{"b", ">", "0"}]}], "]"}], "]"}]}], "]"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"this", " ", "integrates", " ", "to", " ", "0"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{"test", ",", 
+     RowBox[{"Limits", "[", 
+      RowBox[{"T2", "[", 
+       RowBox[{"a", ",", "b", ",", 
+        RowBox[{"b", ">", "0"}]}], "]"}], "]"}], ",", 
+     RowBox[{"Assumptions", "\[Rule]", 
+      RowBox[{"b", ">", "0"}]}]}], "]"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"this", " ", "is", " ", "very", " ", "slow"}], " ", "*)"}], 
+   "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Timing", "[", 
+   RowBox[{"bound", "=", 
+    RowBox[{"Rayleigh", "[", 
+     RowBox[{"test", ",", 
+      RowBox[{"T2", "[", 
+       RowBox[{"a", ",", "b", ",", 
+        RowBox[{"b", ">", "0"}]}], "]"}]}], "]"}]}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.549061171554055*^9, 3.549061273878304*^9}, {
+   3.549061370156537*^9, 3.549061445831154*^9}, {3.549061478734551*^9, 
+   3.5490618570981817`*^9}, {3.549062396402182*^9, 3.549062478841611*^9}, {
+   3.5490625896414843`*^9, 3.5490628975286093`*^9}, {3.549065441307317*^9, 
+   3.549065597038581*^9}, {3.549066812471101*^9, 3.549066934042653*^9}, {
+   3.5490670706804543`*^9, 3.5490671087510233`*^9}, {3.5490671502891083`*^9, 
+   3.5490673529161377`*^9}, {3.549067458043084*^9, 3.549067461539288*^9}, {
+   3.549067496604303*^9, 3.549067521986114*^9}, {3.549067557925928*^9, 
+   3.549067595154201*^9}, {3.5490676349867687`*^9, 3.549067687735498*^9}, {
+   3.549067723429188*^9, 3.549067776724751*^9}, {3.549067806845693*^9, 
+   3.5490679157736607`*^9}, {3.549069152224977*^9, 3.54906915384617*^9}, {
+   3.549070308730575*^9, 3.549070336475148*^9}, {3.549070734378874*^9, 
+   3.5490707678042107`*^9}, {3.5490708141630373`*^9, 3.549070821025248*^9}, {
+   3.5490737497802773`*^9, 3.549073768256867*^9}, {3.549073931257255*^9, 
+   3.549074136753134*^9}, {3.549074283917554*^9, 3.549074456079027*^9}, {
+   3.549074504958798*^9, 3.549074527757786*^9}, {3.5490745838068457`*^9, 
+   3.549074585279242*^9}, {3.549074663692914*^9, 3.549074741394726*^9}, {
+   3.549074893904216*^9, 3.5490748967953367`*^9}, {3.5490749859556723`*^9, 
+   3.549074997519685*^9}, {3.549075039360189*^9, 3.549075049415523*^9}, 
+   3.5491107553257933`*^9, {3.5491109771843767`*^9, 3.54911097934618*^9}, {
+   3.5491134811069803`*^9, 3.5491134861934443`*^9}, {3.5491151114091473`*^9, 
+   3.549115113805666*^9}, {3.5491160275285673`*^9, 3.54911603066194*^9}, {
+   3.549116088243555*^9, 3.549116098225091*^9}, {3.549117419999278*^9, 
+   3.54911742804255*^9}, {3.549117484395137*^9, 3.549117489758685*^9}, {
+   3.5491179550253353`*^9, 3.549117958499353*^9}, {3.549146694793096*^9, 
+   3.549146696714779*^9}, {3.5491469263975973`*^9, 3.5491469347861567`*^9}, {
+   3.5491470816443167`*^9, 3.5491470819108753`*^9}, {3.54914744343847*^9, 
+   3.549147444144945*^9}, {3.549147575610228*^9, 3.5491475970604258`*^9}, {
+   3.549147649677204*^9, 3.549147668554435*^9}, {3.5491477041406116`*^9, 
+   3.549147704473464*^9}, {3.549148529442173*^9, 3.549148529570959*^9}, {
+   3.666534383844452*^9, 3.666534389862475*^9}, {3.666534778962318*^9, 
+   3.666534808178323*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "trifun", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"triangle", "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"#", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "\[LessEqual]", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", 
+       RowBox[{"#", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "&"}], "/@", 
+     RowBox[{"{", 
+      RowBox[{"Limits", "[", 
+       RowBox[{"T2", "[", 
+        RowBox[{"a", ",", "b", ",", 
+         RowBox[{"b", ">", "0"}]}], "]"}], "]"}], "}"}]}], ")"}], "/.", 
+   RowBox[{"List", "\[Rule]", "And"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trifun", "[", 
+   RowBox[{"c_", ",", "d_"}], "]"}], ":=", 
+  RowBox[{"Function", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"xx", ",", "yy"}], "}"}], ",", 
+    RowBox[{"Evaluate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"triangle", "/.", 
+         RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+        RowBox[{"b", "\[Rule]", "d"}]}], "/.", 
+       RowBox[{"x", "\[Rule]", "xx"}]}], "/.", 
+      RowBox[{"y", "\[Rule]", "yy"}]}], "]"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.54906927526936*^9, 3.549069473433289*^9}, {
+  3.54911559588402*^9, 3.5491156732501993`*^9}, {3.549115747270131*^9, 
+  3.549115770931013*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"optimal", "[", 
+   RowBox[{
+    RowBox[{"c_", "?", "NumericQ"}], ",", 
+    RowBox[{"d_", "?", "NumericQ"}]}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NMinimize", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"bound", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Max", "[", 
+             RowBox[{
+              RowBox[{"Abs", "[", 
+               RowBox[{"ceq", "[", "1", "]"}], "]"}], ",", 
+              RowBox[{"Abs", "[", 
+               RowBox[{"ch", "[", "1", "]"}], "]"}], ",", 
+              RowBox[{"Abs", "[", 
+               RowBox[{"cri", "[", "1", "]"}], "]"}]}], "]"}], "\[Equal]", 
+            "1"}], "&&", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"ceq", "[", "1", "]"}], "+", 
+             RowBox[{"ceq", "[", "2", "]"}]}], "\[Equal]", "1"}]}]}], "}"}], "/.", 
+        RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+       RowBox[{"b", "\[Rule]", "d"}]}], ",", 
+      RowBox[{"Flatten", "[", 
+       RowBox[{"{", 
+        RowBox[{"eqc", ",", "hc", ",", "ric"}], "}"}], "]"}]}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "//", 
+   RowBox[{
+    RowBox[{"Rationalize", "[", 
+     RowBox[{"#", ",", "0.000001"}], "]"}], 
+    "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"optupper", "[", 
+    RowBox[{"c_", ",", "d_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"test", ",", "bound"}], "}"}], "/.", 
+      RowBox[{"optimal", "[", 
+       RowBox[{"c", ",", "d"}], "]"}]}], "/.", 
+     RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+    RowBox[{"b", "\[Rule]", "d"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"aa", "=", 
+   RowBox[{"2", "/", "1000"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bb", " ", "=", 
+   RowBox[{"17", "/", "10"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"optupper", "[", 
+   RowBox[{"aa", ",", "bb"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ContourPlot", "[", 
+  RowBox[{
+   RowBox[{"%", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", "0", ",", "2"}], "}"}], ",", 
+   RowBox[{"RegionFunction", "\[Rule]", 
+    RowBox[{"trifun", "[", 
+     RowBox[{"aa", ",", "bb"}], "]"}]}], ",", 
+   RowBox[{"Contours", "\[Rule]", "40"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"4", 
+   RowBox[{"%%", "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.5490679185246353`*^9, 3.549067930651574*^9}, {
+   3.549067963322772*^9, 3.549068046832048*^9}, {3.549068732071559*^9, 
+   3.5490690683267593`*^9}, {3.549069160710514*^9, 3.549069195836145*^9}, {
+   3.5490692574663887`*^9, 3.549069261282148*^9}, {3.54906930552102*^9, 
+   3.549069308144347*^9}, {3.5490694830681133`*^9, 3.549069483719839*^9}, {
+   3.5490695169965773`*^9, 3.549069547854341*^9}, {3.549069622271503*^9, 
+   3.5490696893992147`*^9}, {3.54906973769938*^9, 3.549069849662085*^9}, {
+   3.54906989300648*^9, 3.549069917658595*^9}, {3.549069966465744*^9, 
+   3.5490700114098463`*^9}, {3.549070453729068*^9, 3.5490704606533003`*^9}, {
+   3.5490746098119917`*^9, 3.549074652071033*^9}, {3.5490747560428143`*^9, 
+   3.549074763437202*^9}, {3.549074808504187*^9, 3.549074835994459*^9}, {
+   3.549074874926848*^9, 3.549074881853002*^9}, {3.549075002788617*^9, 
+   3.549075008760084*^9}, {3.549075211608982*^9, 3.5490752372093077`*^9}, {
+   3.54907529115285*^9, 3.549075349653984*^9}, {3.54907538198536*^9, 
+   3.549075383181488*^9}, {3.5491131032859097`*^9, 3.5491131350853033`*^9}, {
+   3.5491132452671947`*^9, 3.549113260315922*^9}, 3.549113354324246*^9, 
+   3.549113392168803*^9, {3.5491134236059313`*^9, 3.549113470654011*^9}, {
+   3.5491135685018*^9, 3.549113576485168*^9}, {3.549113989190391*^9, 
+   3.549113991316098*^9}, {3.549114032806341*^9, 3.549114049022449*^9}, 
+   3.549114081374899*^9, {3.549114137609228*^9, 3.5491141381528*^9}, {
+   3.549114171432197*^9, 3.549114172159728*^9}, {3.549115680648085*^9, 
+   3.54911568111438*^9}, {3.5491157319349623`*^9, 3.5491157323914413`*^9}, {
+   3.549115825343431*^9, 3.549115828613859*^9}, 3.549115891752556*^9, {
+   3.549115965186248*^9, 3.54911596644864*^9}, {3.549116341411545*^9, 
+   3.549116349865713*^9}, {3.549116519885852*^9, 3.549116528063895*^9}, {
+   3.549116605053392*^9, 3.549116607988448*^9}, {3.54911684168821*^9, 
+   3.549116843439653*^9}, {3.5491442534734383`*^9, 3.54914425591288*^9}, {
+   3.5491446168369207`*^9, 3.549144825114276*^9}, {3.5491448862936974`*^9, 
+   3.549145063879414*^9}, {3.549145981226486*^9, 3.5491460301306953`*^9}, {
+   3.549146210946745*^9, 3.5491462111700687`*^9}, {3.549146245529779*^9, 
+   3.549146379510106*^9}, {3.5491464293958282`*^9, 3.549146429683998*^9}, {
+   3.549146464946179*^9, 3.549146471550839*^9}, {3.549146727804439*^9, 
+   3.5491467877930117`*^9}, 3.549146868858139*^9, {3.549147372375299*^9, 
+   3.549147372634182*^9}, {3.549147626746797*^9, 3.5491476547690907`*^9}, 
+   3.666534538616177*^9, 3.6665346232944193`*^9, {3.666534708956355*^9, 
+   3.666534732074254*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Optimal lower bound.", "Subsection",
+ CellChangeTimes->{{3.5491392738607063`*^9, 3.549139286223874*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ineq1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"a", "^", "2"}], "+", "3"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+     RowBox[{"2", "a", " ", "b", " ", "\[Delta]"}], "+", 
+     RowBox[{
+      RowBox[{"b", "^", "2"}], " ", "\[Gamma]"}]}], "<", 
+    RowBox[{"4", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Pi]", "^", "2"}], "/", "3"}], "/", "u"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ineq2", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"a", "^", "2"}], "+", "1"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+     RowBox[{"2", "a", " ", "b", " ", "\[Delta]"}], "+", 
+     RowBox[{
+      RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+    RowBox[{"3", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Pi]", "^", "2"}], "/", "4"}], "/", "u"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ineq3", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"a", "-", 
+           RowBox[{"1", "/", "2"}]}], ")"}], "^", "2"}], "+", 
+        RowBox[{"3", "/", "4"}]}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+     RowBox[{"2", 
+      RowBox[{"(", 
+       RowBox[{"a", "-", 
+        RowBox[{"1", "/", "2"}]}], ")"}], "b", " ", "\[Delta]"}], "+", 
+     RowBox[{
+      RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+    RowBox[{"2", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Pi]", "^", "2"}], "/", "3"}], "/", "u"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ineq4", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"a", "-", "1"}], ")"}], "^", "2"}], "+", 
+        RowBox[{"4", "/", "3"}]}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Gamma]"}], ")"}]}], "+", 
+     RowBox[{"2", 
+      RowBox[{"(", 
+       RowBox[{"a", "-", "1"}], ")"}], "b", " ", "\[Delta]"}], "+", 
+     RowBox[{
+      RowBox[{"b", "^", "2"}], "\[Gamma]"}]}], "<", 
+    RowBox[{"8", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Pi]", "^", "2"}], "/", "9"}], "/", "u"}]}]}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.5491394471041594`*^9, 3.549139452134522*^9}, {
+  3.549143786057808*^9, 3.549143818219454*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"ineqs", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"ineq1", "||", "ineq2", "||", "ineq3", "||", "ineq4"}], "/.", 
+     RowBox[{"u", "\[Rule]", 
+      RowBox[{
+       RowBox[{"\[Pi]", "^", "2"}], "/", "u"}]}]}], "/.", 
+    RowBox[{"Less", "\[Rule]", "Equal"}]}], "//", 
+   RowBox[{
+    RowBox[{"Collect", "[", 
+     RowBox[{"#", ",", 
+      RowBox[{"{", 
+       RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}], ",", "FullSimplify"}], 
+     "]"}], "&"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"lessu", "=", 
+  RowBox[{"u", "/.", 
+   RowBox[{"(", 
+    RowBox[{"%", "//", 
+     RowBox[{
+      RowBox[{"Solve", "[", 
+       RowBox[{"#", ",", "u"}], "]"}], "&"}]}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"optimal2", "[", 
+   RowBox[{
+    RowBox[{"c_", "?", "NumericQ"}], ",", 
+    RowBox[{"d_", "?", "NumericQ"}]}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Maximize", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Min", "[", "lessu", "]"}], ",", 
+          RowBox[{
+           RowBox[{"0", "\[LessEqual]", "\[Gamma]", "\[LessEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1"}], "/", "2"}], "\[LessEqual]", "\[Delta]", 
+            "\[LessEqual]", 
+            RowBox[{"1", "/", "2"}]}]}]}], "}"}], "/.", 
+        RowBox[{"a", "\[Rule]", "c"}]}], "/.", 
+       RowBox[{"b", "\[Rule]", "d"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Gamma]", ",", "\[Delta]"}], "}"}]}], "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"optlower", "[", 
+   RowBox[{"c_", ",", "d_"}], "]"}], ":=", 
+  RowBox[{"lower", "=", 
+   RowBox[{
+    RowBox[{"2", "u"}], "/.", 
+    RowBox[{"u", "\[Rule]", 
+     RowBox[{
+      RowBox[{"\[Pi]", "^", "2"}], "/", 
+      RowBox[{"optimal2", "[", 
+       RowBox[{"c", ",", "d"}], "]"}]}]}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"optlower", "[", 
+   RowBox[{
+    RowBox[{"2", "/", "1000"}], ",", 
+    RowBox[{"17", "/", "10"}]}], "]"}], "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.549139467423674*^9, 3.549139558966867*^9}, {
+   3.549139618374404*^9, 3.549139686117029*^9}, {3.5491397197398653`*^9, 
+   3.549139752914057*^9}, {3.549139857686357*^9, 3.54913987741142*^9}, {
+   3.549139910123456*^9, 3.5491399196267014`*^9}, {3.549139953218007*^9, 
+   3.549139954657494*^9}, {3.5491401052303677`*^9, 3.549140149626843*^9}, {
+   3.549140598619915*^9, 3.549140849402828*^9}, {3.549140881631979*^9, 
+   3.549141119985235*^9}, {3.549141160507395*^9, 3.5491411613552847`*^9}, {
+   3.549141262792076*^9, 3.549141263399729*^9}, {3.549141300004221*^9, 
+   3.5491413064180098`*^9}, {3.549141429284071*^9, 3.549141523844202*^9}, {
+   3.549141717131989*^9, 3.549141719131525*^9}, {3.5491417958141003`*^9, 
+   3.549141847903101*^9}, {3.549141976256542*^9, 3.5491419865747757`*^9}, {
+   3.549143362152143*^9, 3.5491435845579443`*^9}, {3.5491437070049467`*^9, 
+   3.549143742444416*^9}, {3.549143825076913*^9, 3.549143869107771*^9}, {
+   3.549143943627145*^9, 3.549144021456931*^9}, {3.549144079623652*^9, 
+   3.549144094903171*^9}, 3.549144127329772*^9, {3.54914416953526*^9, 
+   3.549144245768564*^9}, {3.549144343675651*^9, 3.549144362665831*^9}, {
+   3.549145110167839*^9, 3.5491452654192944`*^9}, {3.5491452966380672`*^9, 
+   3.549145303042165*^9}, {3.549145357180019*^9, 3.549145402483858*^9}, {
+   3.549145971507265*^9, 3.5491459772898083`*^9}, {3.549146010432311*^9, 
+   3.549146022282939*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lower bound for the gap for triangle (-1,0), (1,0) and (a,b)", \
+"Subsection",
+ CellChangeTimes->{{3.5491457879013243`*^9, 3.549145800369602*^9}, {
+  3.549145836680394*^9, 3.54914584912138*^9}, {3.549147277800555*^9, 
+  3.549147278616518*^9}}],
+
+Cell["\<\
+Gives exact value for equilateral, right isosceles and 30 - 60 - 90.\
+\>", "Text",
+ CellChangeTimes->{{3.54914610899579*^9, 3.5491461342189493`*^9}, {
+  3.549147412935628*^9, 3.549147413571548*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"gap", "[", 
+   RowBox[{"c_", ",", "d_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"optlower", "[", 
+    RowBox[{"c", ",", "d"}], "]"}], "-", 
+   RowBox[{"2", 
+    RowBox[{
+     RowBox[{"optupper", "[", 
+      RowBox[{"c", ",", "d"}], "]"}], "[", 
+     RowBox[{"[", "2", "]"}], "]"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"4", 
+   RowBox[{"gap", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], "]"}]}], "//", 
+  "N"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"4", 
+   RowBox[{"gap", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "*", 
+      RowBox[{"9999", "/", "10000"}]}]}], "]"}]}], "//", 
+  "N"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"4", 
+   RowBox[{"gap", "[", 
+    RowBox[{
+     RowBox[{"2", "/", "1000"}], ",", 
+     RowBox[{"17", "/", "10"}]}], "]"}]}], "//", "N"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"4", 
+   RowBox[{"gap", "[", 
+    RowBox[{
+     RowBox[{"1", "/", "4"}], ",", 
+     RowBox[{"Sqrt", "[", "2", "]"}]}], "]"}]}], "//", 
+  "N"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"optupper", "[", 
+     RowBox[{
+      RowBox[{"1", "/", "4"}], ",", 
+      RowBox[{"Sqrt", "[", "2", "]"}]}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "4"}], "//", "N"}]}], "Input",
+ CellChangeTimes->{{3.549144349199984*^9, 3.549144370432844*^9}, {
+   3.549145408843286*^9, 3.549145578557486*^9}, {3.549145731277059*^9, 
+   3.549145732389721*^9}, {3.549145857300967*^9, 3.549145912876184*^9}, {
+   3.549146042931121*^9, 3.5491460430005836`*^9}, {3.5491461521668253`*^9, 
+   3.54914615570184*^9}, {3.549146188637904*^9, 3.549146191885427*^9}, {
+   3.549146227084749*^9, 3.549146228499741*^9}, {3.549146815451771*^9, 
+   3.549146851062989*^9}, {3.549146898898756*^9, 3.5491469063590307`*^9}, {
+   3.549147281127097*^9, 3.54914728481539*^9}, {3.549147417296687*^9, 
+   3.549147418944378*^9}, 3.5491475503498287`*^9, {3.549148324315802*^9, 
+   3.549148334971633*^9}, {3.5491484662094517`*^9, 3.549148498149891*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1377, 856},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+ShowSelection->True,
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 249, 6, 46, "Input"],
+Cell[CellGroupData[{
+Cell[831, 30, 101, 1, 64, "Section"],
+Cell[935, 33, 6666, 197, 301, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7638, 235, 99, 1, 64, "Section"],
+Cell[7740, 238, 6124, 179, 250, "Input"],
+Cell[13867, 419, 1461, 40, 46, "Input"],
+Cell[15331, 461, 134, 1, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15502, 467, 349, 6, 64, "Section"],
+Cell[15854, 475, 532, 14, 28, "Input"],
+Cell[16389, 491, 238, 5, 28, "Input"],
+Cell[16630, 498, 188, 4, 30, "Text"],
+Cell[16821, 504, 1619, 34, 46, "Input"],
+Cell[18443, 540, 176, 4, 31, "Text"],
+Cell[18622, 546, 594, 18, 28, "Input"],
+Cell[19219, 566, 253, 5, 30, "Text"],
+Cell[19475, 573, 481, 14, 46, "Input"],
+Cell[19959, 589, 102, 1, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20098, 595, 124, 1, 64, "Section"],
+Cell[20225, 598, 580, 11, 87, "Text"],
+Cell[20808, 611, 1593, 47, 46, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22438, 663, 324, 4, 64, "Section"],
+Cell[22765, 669, 100, 1, 28, "Input"],
+Cell[22868, 672, 265, 5, 31, "Text"],
+Cell[23136, 679, 1705, 47, 80, "Input"],
+Cell[24844, 728, 269, 5, 31, "Text"],
+Cell[25116, 735, 950, 24, 63, "Input"],
+Cell[26069, 761, 260, 5, 30, "Text"],
+Cell[26332, 768, 2069, 55, 97, "Input"],
+Cell[28404, 825, 235, 5, 30, "Text"],
+Cell[28642, 832, 1717, 49, 46, "Input"],
+Cell[30362, 883, 259, 5, 31, "Text"],
+Cell[30624, 890, 3181, 65, 80, "Input"],
+Cell[33808, 957, 232, 4, 31, "Text"],
+Cell[34043, 963, 629, 18, 46, "Input"],
+Cell[34675, 983, 152, 2, 30, "Text"],
+Cell[34830, 987, 781, 23, 46, "Input"],
+Cell[35614, 1012, 111, 1, 30, "Text"],
+Cell[35728, 1015, 1175, 36, 46, "Input"],
+Cell[36906, 1053, 2379, 73, 131, "Input"],
+Cell[39288, 1128, 1813, 53, 63, "Input"],
+Cell[41104, 1183, 161, 3, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41302, 1191, 135, 1, 64, "Section"],
+Cell[41440, 1194, 597, 17, 28, "Input"],
+Cell[42040, 1213, 222, 5, 28, "Input"],
+Cell[42265, 1220, 668, 11, 69, "Text"],
+Cell[CellGroupData[{
+Cell[42958, 1235, 109, 1, 44, "Subsection"],
+Cell[43070, 1238, 175, 4, 30, "Text"],
+Cell[43248, 1244, 1316, 34, 80, "Input"],
+Cell[44567, 1280, 296, 5, 30, "Text"],
+Cell[44866, 1287, 1146, 34, 46, "Input"],
+Cell[46015, 1323, 2681, 84, 114, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48733, 1412, 254, 3, 44, "Subsection"],
+Cell[48990, 1417, 789, 20, 63, "Input"],
+Cell[49782, 1439, 146, 1, 31, "Text"],
+Cell[49931, 1442, 637, 18, 46, "Input"],
+Cell[50571, 1462, 426, 7, 50, "Text"],
+Cell[51000, 1471, 1421, 44, 63, "Input"],
+Cell[52424, 1517, 230, 5, 30, "Text"],
+Cell[52657, 1524, 2842, 91, 165, "Input"],
+Cell[55502, 1617, 145, 1, 31, "Text"],
+Cell[55650, 1620, 742, 20, 63, "Input"],
+Cell[56395, 1642, 139, 1, 31, "Text"],
+Cell[56537, 1645, 522, 16, 46, "Input"],
+Cell[57062, 1663, 343, 6, 50, "Text"],
+Cell[57408, 1671, 1299, 41, 63, "Input"],
+Cell[58710, 1714, 3624, 116, 199, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62371, 1835, 114, 1, 44, "Subsection"],
+Cell[62488, 1838, 280, 6, 30, "Text"],
+Cell[62771, 1846, 1679, 44, 80, "Input"],
+Cell[64453, 1892, 1106, 27, 63, "Input"],
+Cell[65562, 1921, 407, 7, 50, "Text"],
+Cell[65972, 1930, 1002, 27, 97, "Input"],
+Cell[66977, 1959, 164, 2, 30, "Text"],
+Cell[67144, 1963, 4156, 129, 250, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71337, 2097, 209, 3, 44, "Subsection"],
+Cell[71549, 2102, 198, 4, 30, "Text"],
+Cell[71750, 2108, 1701, 51, 97, "Input"],
+Cell[73454, 2161, 138, 1, 30, "Text"],
+Cell[73595, 2164, 2471, 79, 131, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76103, 2248, 104, 1, 44, "Subsection"],
+Cell[76210, 2251, 574, 9, 50, "Text"],
+Cell[76787, 2262, 3615, 102, 148, "Input"],
+Cell[80405, 2366, 383, 7, 49, "Text"],
+Cell[80791, 2375, 838, 26, 46, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81678, 2407, 119, 1, 64, "Section"],
+Cell[81800, 2410, 223, 6, 46, "Input"],
+Cell[82026, 2418, 276, 5, 30, "Text"],
+Cell[CellGroupData[{
+Cell[82327, 2427, 114, 1, 44, "Subsection"],
+Cell[82444, 2430, 123, 1, 30, "Text"],
+Cell[82570, 2433, 106, 2, 46, "Input"],
+Cell[CellGroupData[{
+Cell[82701, 2439, 104, 1, 35, "Subsubsection"],
+Cell[82808, 2442, 2854, 80, 131, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85699, 2527, 105, 1, 35, "Subsubsection"],
+Cell[85807, 2530, 2243, 69, 131, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[88087, 2604, 106, 1, 35, "Subsubsection"],
+Cell[88196, 2607, 2167, 66, 131, "Input"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[90412, 2679, 110, 1, 44, "Subsection"],
+Cell[90525, 2682, 418, 7, 30, "Text"],
+Cell[90946, 2691, 6840, 176, 420, "Input"],
+Cell[97789, 2869, 1347, 38, 63, "Input"],
+Cell[99139, 2909, 5240, 115, 148, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[104416, 3029, 110, 1, 44, "Subsection"],
+Cell[104529, 3032, 2540, 86, 80, "Input"],
+Cell[107072, 3120, 3554, 85, 97, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[110663, 3210, 249, 4, 44, "Subsection"],
+Cell[110915, 3216, 208, 4, 30, "Text"],
+Cell[111126, 3222, 2065, 56, 114, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
